@@ -1,5 +1,5 @@
 {
-  "name": "si4b_rest_api",
+  "name": "simple_api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,7 +14,6 @@
     "body-parser": "^1.19.0",
     "cloudinary": "^1.28.1",
     "express": "^4.17.2",
-    "express-session": "^1.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongojs": "^3.1.0",
     "multer": "^1.4.4",

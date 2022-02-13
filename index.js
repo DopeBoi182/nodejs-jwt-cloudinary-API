@@ -1,6 +1,5 @@
 const express = require("express");
 const mongojs = require("mongojs");
-const routes = require('./routes.js');
 const routerAdmin = require('./routerAdmin.js');
 const routerUser = require('./routerUser.js');
 const bodyParser = require('body-parser');
@@ -101,11 +100,9 @@ app.use('/logout', verifyToken, function (req, res) {
     res.send("Successfully Logged Out!")
   })
 })
-// app.use('/user', verifyToken, routerUser)
-// app.use('/admin', verifyToken, verifyAdmin, routerAdmin)
 
-app.use('/user', routerUser)
-app.use('/admin', routerAdmin)
+app.use('/user', verifyToken, routerUser)
+app.use('/admin', verifyToken, verifyAdmin, routerAdmin)
 
 app.listen(5000, function () {
   console.log('listening on 5000')
