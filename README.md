@@ -48,8 +48,8 @@ Simple API using NodeJS alongside with MongoDB, JWT for authentication and Cloud
 - You're all set
 
 ### Syncronized to Cloudinary
-Automatically Synchronized with your Cloudinary account
 ![Screen](https://i.imgur.com/b4p7r4w.png)
+
 ### Documentation
 
 [TBU](https://linktodocumentation)
