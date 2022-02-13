@@ -50,7 +50,7 @@ const verifyAdmin = (req, res, next) => {
 }
 const app = express();
 
-var databaseUrl = "elemes";
+var databaseUrl = "db_api";
 
 global.db = mongojs(databaseUrl);
 
