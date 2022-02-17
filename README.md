@@ -1,5 +1,5 @@
 
-## [Node.JS + MongoDB + JWT + Cloudinary] - SIMPLE API
+## [Node.JS + MongoDB + JWT + Cloudinary] - SIMPLE CRUD + REGISTER + LOGIN + IMAGE UPLOAD API
 
 Simple API using NodeJS alongside with MongoDB, JWT for authentication and Cloudinary as bonus to upload image!
 
