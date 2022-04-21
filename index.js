@@ -72,7 +72,7 @@ app.post('/upload', upload.single('picture'), (req, res) => {
 app.use('/login', async (req, res) => {
   let email = req.body.email ? req.body.email : null;
   let password = req.body.password ? req.body.password : null;
-  if (!email || !password) res.send("Fill the email and password form!");
+  if (!email || !password) return res.send("Fill the email and password form!");
   let q = { email };
   db.collection('user').findOne(q, async function (err, reply) {
     if (!reply) return res.send("User not registered!");
@@ -97,7 +97,7 @@ app.use('/login', async (req, res) => {
 
 app.use('/logout', verifyToken, function (req, res) {
   db.collection('session').remove({ token: req.token }, function (err, reply) {
-    res.send("Successfully Logged Out!")
+    return res.send("Successfully Logged Out!")
   })
 })
 

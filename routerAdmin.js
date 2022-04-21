@@ -46,15 +46,15 @@ router.post('/createcourse', async function (req, res) {
     let value = req.body.value ? req.body.value : null;
     let price = req.body.price ? parseFloat(req.body.price) : null;
 
-    if (!title || !category || !value || !price) res.send("Make sure you have filled all the form available!");
+    if (!title || !category || !value || !price) return res.send("Make sure you have filled all the form available!");
 
     let q = { title, category, value, price };
     db.collection('course').insert(q, function (err, reply) {
         if (err) res.json(err);
         if (reply) {
-            res.send("Successfully Inserted New Course!")
+            return res.send("Successfully Inserted New Course!")
         } else {
-            res.send("Error Failed To Insert New Course!")
+            return res.send("Error Failed To Insert New Course!")
         }
     })
 });
@@ -96,12 +96,12 @@ router.get('/getcourse', async function (req, res) {
     }
 
     db.collection('course').aggregate(aggregate, function (err, reply) {
-        res.send(reply)
+        return res.send(reply)
     })
 });
 
 router.post('/updatecourse', async function (req, res) {
-    if (!req.body._id) res.send("Failed to receive course {ID}");
+    if (!req.body._id) return res.send("Failed to receive course {ID}");
 
     let q = {};
     q._id = mongojs.ObjectId(req.body._id);
@@ -117,13 +117,13 @@ router.post('/updatecourse', async function (req, res) {
         }
     }
     db.collection('course').update(q, { $set: update }, function (err, reply) {
-        if (err) res.send("Failed to update course!");
-        res.send(`Course ID:${q._id} has successfully updated!`);
+        if (err) return res.send("Failed to update course!");
+        return res.send(`Course ID:${q._id} has successfully updated!`);
     })
 });
 
 router.post('/deletecourse', async function (req, res) {
-    if (!req.body._id) res.send("Failed to receive course {ID}");
+    if (!req.body._id) return res.send("Failed to receive course {ID}");
 
     let q = {};
     q._id = mongojs.ObjectId(req.body._id);
@@ -132,8 +132,8 @@ router.post('/deletecourse', async function (req, res) {
         timestamp: new Date()
     }
     db.collection('course').update(q, { $set: { deleted } }, function (err, reply) {
-        if (err) res.send("Failed to update course!");
-        res.send(`Course ID:${q._id} has successfully updated!`);
+        if (err) return res.send("Failed to update course!");
+        return res.send(`Course ID:${q._id} has successfully updated!`);
     })
 })
 

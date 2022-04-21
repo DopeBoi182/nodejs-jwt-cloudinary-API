@@ -26,13 +26,13 @@ router.post('/register', async function (req, res) {
 
     db.collection('user').insert(q, function (err, reply) {
         if (err) return res.json(err);
-        res.send("Successfully Registered!");
+        return res.send("Successfully Registered!");
     });
 });
 
 router.get('/getcategory', async function (req, res) {
     db.collection('course').distinct('category', { deleted: { $exists: false } }, function (err, reply) {
-        res.send({
+        return res.send({
             category: reply
         })
     })
@@ -62,7 +62,7 @@ router.get('/getpopularcategory', async function (req, res) {
         }
     })
     db.collection('course').aggregate(aggregate, function (err, reply) {
-        res.send(reply)
+        return res.send(reply)
     })
 });
 
@@ -98,17 +98,17 @@ router.get('/getcourse', async function (req, res) {
 
     aggregate.push({ $match: match });
     db.collection('course').aggregate(aggregate, function (err, reply) {
-        res.send(reply)
+        return res.send(reply)
     })
 });
 
 router.get('/getdetailcourse', async function (req, res) {
-    if (!req.query._id) res.send("Error, failed to receive ID request");
+    if (!req.query._id) return res.send("Error, failed to receive ID request");
     let q = {};
     q._id = mongojs.ObjectId(req.query._id);
     q.deleted = { $exists: false };
     db.collection('course').findOne(q, function (err, reply) {
-        res.send(reply)
+        return res.send(reply)
     })
 })
 
